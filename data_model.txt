@@ -1,0 +1,27 @@
+User
+  id:integer [primary key]
+  username:string [20 max chars, present, unique(case_insensitive)]
+  email: string [unique]
+  password: string [6-16 chars, present]
+  created_at:datetime
+  updated_at:datetime
+
+  has_many posts
+
+Post
+  id:integer [primary key]
+  user_id:integer [foreign key]
+  title:text [300 chars max chars, present]
+  body:text [40,000 max chars]
+  created_at:datetime
+  updated_at:datetime
+
+  belongs to user
+  has_many comment
+
+Comment
+  id:integer [primary key]
+  post_id:integer [foreign key]
+  content:text [200 max chars, present]
+
+  belongs to post
